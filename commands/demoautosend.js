@@ -5,25 +5,11 @@ const languageManager = require('../utils/language');
 const { hasAdminPermission } = require('../utils/permissions');
 const { validateChannel } = require('../utils/channelValidator');
 const { handleDMRestriction } = require('../utils/dmHandler');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
 
 // Game information mapping
-const gameNames = {
-    'genshin': 'Genshin Impact',
-    'hkrpg': 'Honkai: Star Rail',
-    'nap': 'Zenless Zone Zero'
-};
-
-const gameEmojis = {
-    'genshin': '<:genshin:1368073403231375430>',
-    'hkrpg': '<:hsr:1368073099756703794>',
-    'nap': '<:zzz:1368073452174704763>'
-};
-
-const redeemUrls = {
-    'genshin': 'https://genshin.hoyoverse.com/en/gift',
-    'hkrpg': 'https://hsr.hoyoverse.com/gift',
-    'nap': 'https://zenless.hoyoverse.com/redemption'
-};
+const gameNames = GAME_NAMES;
+const redeemUrls = REDEEM_URLS;
 
 const roleMapping = {
     'genshin': 'genshinRole',

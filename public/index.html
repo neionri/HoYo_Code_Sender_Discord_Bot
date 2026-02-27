@@ -6,726 +6,883 @@
     <meta name="description" content="Get the latest active redemption codes for HoYoverse games - Genshin Impact, Honkai: Star Rail, and Zenless Zone Zero">
     <meta name="keywords" content="HoYo codes, Genshin Impact codes, Honkai Star Rail codes, Zenless Zone Zero codes, redemption codes">
     <meta name="author" content="Neionri">
-    
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="HoYo Game Codes - Active Redemption Codes">
     <meta property="og:description" content="Get the latest active redemption codes for HoYoverse games">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://pic.re/image">
-    
-    <title>NXC7 - HoYo Game Codes - Active Redemption Codes</title>
-    
-    <!-- Preload critical resources -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://images.unsplash.com">
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" 
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-          crossorigin="anonymous" 
-          rel="stylesheet">
-    <link rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-          integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" 
-          crossorigin="anonymous">    <style>
-        :root {
-            --primary-color: #7289DA;
-            --primary-hover: #5b73c7;
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.25);
-            --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.35);
-            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
+    <title>HoYo Game Codes — Active Redemption Codes</title>
 
-        * {
-            box-sizing: border-box;
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
+
+    <style>
+        /* ─── Reset & Base ─────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:       #090909;
+            --surface:  #111111;
+            --surface2: #1a1a1a;
+            --border:   rgba(255,255,255,0.10);
+            --border-active: rgba(255,255,255,0.6);
+            --text:     #f0f0f0;
+            --muted:    #666;
+            --accent:   #ffffff;
+            --serif:    'Noto Serif JP', serif;
+            --mono:     'JetBrains Mono', monospace;
         }
 
         html, body {
             height: 100%;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }        
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            position: relative;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--serif);
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
+        /* ─── Manga BG Pattern ──────────────────────────────────── */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: -1;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg,   transparent, transparent 79px, rgba(255,255,255,0.025) 80px),
+                repeating-linear-gradient(90deg,  transparent, transparent 79px, rgba(255,255,255,0.025) 80px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .container {
-            flex: 1 0 auto;
+        /* Radial light source — top center */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── Layout ────────────────────────────────────────────── */
+        .page {
             position: relative;
             z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .glass-effect {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-light);
-            border-radius: 20px;
-        }
+        main { flex: 1; }
 
-        .glass-text-embed {
+        /* ─── Header ────────────────────────────────────────────── */
+        header {
+            padding: 56px 0 40px;
             text-align: center;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 25px 40px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-light);
-            color: white;
-            font-size: 2rem;
-            font-weight: 700;
-            text-shadow: var(--text-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 2rem;
+            position: relative;
         }
 
-        .glass-text-embed:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
+        .header-deco {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 20px;
         }
 
-        .btn-discord {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: white;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .header-deco-line {
+            flex: 1;
+            max-width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+        }
+        .header-deco-line.right {
+            background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
+        }
+
+        .header-deco-diamond {
+            width: 8px; height: 8px;
+            border: 1px solid rgba(255,255,255,0.5);
+            transform: rotate(45deg);
+        }
+
+        .site-title {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            text-shadow: 0 0 40px rgba(255,255,255,0.15);
+            line-height: 1.1;
+        }
+
+        .site-title-jp {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* ─── Invite Button ─────────────────────────────────────── */
+        .invite-section {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .btn-invite {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .btn-discord:hover {
-            background-color: var(--primary-hover);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(114, 137, 218, 0.4);
-        }
-
-        .game-selector {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 10px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-light);
-        }
-
-        .game-selector .btn {
-            border-radius: 15px;
-            font-weight: 600;
+            padding: 13px 32px;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 2px;
+            font-family: var(--serif);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            color: white;
-            border: 2px solid transparent;
-        }
-
-        .game-selector .btn.active {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(114, 137, 218, 0.4);
-        }
-
-        .game-selector .btn:not(.active) {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .game-selector .btn:not(.active):hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .main-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            box-shadow: var(--shadow-light);
+            position: relative;
             overflow: hidden;
         }
 
-        .table-container {
-            border-radius: 15px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.95);
+        .btn-invite::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
         }
 
-        .table th {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-            color: white;
+        .btn-invite:hover {
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .btn-invite:hover::before { transform: scaleX(1); }
+
+        .invite-caption {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+        }
+
+        /* ─── Game Tabs ─────────────────────────────────────────── */
+        .tab-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .tab-group {
+            display: flex;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 11px 22px;
+            background: transparent;
+            color: var(--muted);
             border: none;
-            font-weight: 600;
-            padding: 15px;
+            border-right: 1px solid var(--border);
+            font-family: var(--serif);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
         }
 
-        .table td {
-            padding: 15px;
+        .tab-btn:last-child { border-right: none; }
+
+        .tab-btn:hover { color: var(--text); background: var(--surface); }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .tab-btn .tab-icon { margin-right: 7px; font-size: 0.75rem; }
+
+        /* ─── Card ──────────────────────────────────────────────── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Manga-style corner accents */
+        .card::before, .card::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            z-index: 1;
+        }
+        .card::before {
+            top: -1px; left: -1px;
+            border-top: 2px solid rgba(255,255,255,0.5);
+            border-left: 2px solid rgba(255,255,255,0.5);
+        }
+        .card::after {
+            bottom: -1px; right: -1px;
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            border-right: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-game-title {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .card-subtitle {
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            margin-top: 3px;
+        }
+
+        /* ─── Stats ─────────────────────────────────────────────── */
+        .stats-bar {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-item {
+            flex: 1;
+            padding: 16px 24px;
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+        .stat-item:last-child { border-right: none; }
+
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            font-family: var(--mono);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* ─── Table ─────────────────────────────────────────────── */
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            padding: 13px 24px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: var(--surface2); }
+
+        tbody td {
+            padding: 16px 24px;
             vertical-align: middle;
-            border-color: rgba(0, 0, 0, 0.1);
-        }        .table tbody tr:hover {
-            background-color: rgba(114, 137, 218, 0.1);
-            transition: all 0.2s ease;
         }
 
+        /* code badge */
         .code-badge {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            border: none;
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 5px 12px;
+            background: var(--surface2);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--accent);
         }
 
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.85rem;
+        /* status */
+        .status-ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #e0e0e0;
         }
 
-        .btn-copy {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 6px rgba(255,255,255,0.7);
+            animation: pulse-dot 2s ease-in-out infinite;
         }
 
-        .btn-copy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            color: white;
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
+        /* rewards */
+        .rewards-text {
+            font-size: 0.78rem;
+            color: var(--muted);
+            max-width: 250px;
+        }
+
+        /* action buttons */
+        .btn-row { display: flex; gap: 8px; }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            font-family: var(--serif);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: transparent;
+            color: var(--muted);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-action:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .btn-action.copied {
+            background: #333;
+            color: var(--text);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* ─── Loading ───────────────────────────────────────────── */
+        .loading-state {
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 36px; height: 36px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text {
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* ─── Error ─────────────────────────────────────────────── */
+        .error-state {
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .error-icon { font-size: 2rem; color: var(--muted); margin-bottom: 16px; }
+
+        .error-msg {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 24px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── Empty ─────────────────────────────────────────────── */
+        .empty-state {
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .empty-jp {
+            font-size: 2.5rem;
+            color: rgba(255,255,255,0.06);
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .empty-msg {
+            font-size: 0.78rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ─── Refresh button (card header) ──────────────────────── */
         .btn-refresh {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            border: none;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 15px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            font-family: var(--serif);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: transparent;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
         .btn-refresh:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
-            color: white;
+            color: var(--text);
+            border-color: rgba(255,255,255,0.35);
         }
 
-        .loading-spinner {
-            color: white;
-        }
-
-        .error-alert {
-            background: rgba(220, 53, 69, 0.9);
-            border: none;
-            border-radius: 15px;
-            color: white;
-        }
-
-        .topgg-widget {
-            text-align: center;
-            margin: 30px auto;
-            max-width: 500px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: var(--shadow-light);
-            border: 1px solid var(--glass-border);
-            transition: transform 0.3s ease;
-        }
-
-        .topgg-widget:hover {
-            transform: translateY(-3px);
-        }
-
-        .topgg-widget img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .topgg-widget:hover img {
-            transform: scale(1.05);
-        }
-
+        /* ─── Footer ────────────────────────────────────────────── */
         footer {
-            flex-shrink: 0;
-            width: 100%;
-            padding: 25px 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 60px;
+            padding: 36px 0 48px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 24px;
         }
 
         .footer-link {
-            color: #495057;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 10px;
+            gap: 6px;
+            padding: 8px 20px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s;
         }
 
         .footer-link:hover {
-            color: var(--primary-color);
-            transform: translateY(-2px);
-            background: rgba(114, 137, 218, 0.1);        }
-
-        /* Responsive improvements */
-        @media (max-width: 768px) {
-            .glass-text-embed {
-                font-size: 1.5rem;
-                padding: 20px 25px;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-            
-            .game-selector {
-                padding: 5px;
-            }
-            
-            .table-responsive {
-                font-size: 0.9rem;
-            }
-            
-            .topgg-widget {
-                margin: 20px 15px;
-                padding: 20px;
-            }
+            color: var(--text);
+            border-color: var(--border);
         }
 
-        /* Loading animation */
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }        .loading-pulse {            animation: pulse 1.5s ease-in-out infinite;        }        /* Smooth transitions for content changes */
-        #tableContainer, #loadingSpinner, #errorAlert {
-            transition: opacity 0.3s ease;
+        .footer-copy {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.15);
         }
 
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .footer-copy a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .footer-copy a:hover { color: var(--muted); }
+
+        /* ─── Divider ───────────────────────────────────────────── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 40px 0;
+        }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+        .divider-text {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.2);
+            text-transform: uppercase;
+        }
+
+        /* ─── Utilities ─────────────────────────────────────────── */
+        .d-none { display: none !important; }
+
+        .fade-in { animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+        /* ─── Responsive ────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .tab-btn { padding: 10px 12px; font-size: 0.72rem; }
+            .tab-btn .tab-icon { display: none; }
+            tbody td { padding: 14px 14px; }
+            thead th { padding: 12px 14px; }
+            .stat-item { padding: 14px 12px; }
+            .stat-value { font-size: 1.2rem; }
+            .rewards-text { display: none; }
+            th:nth-child(3), td:nth-child(3) { display: none; }
         }
     </style>
 </head>
-<body class="bg-light">    <div class="container py-4">        <!-- Header -->
-        <header class="text-center mb-5">
-            <h1 class="glass-text-embed">
-                Nxc7 HoYo Game Codes
-                <div class="mt-2" style="font-size: 0.6em; opacity: 0.9;">Active Redemption Codes</div>
-            </h1>
-        </header>
-        
-        <!-- Discord invite bot button -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-8 col-lg-6 text-center">
-                <a href="https://discord.com/oauth2/authorize?client_id=1365996720210579476&scope=bot%20applications.commands&permissions=0"
-                   target="_blank" 
-                   class="btn btn-discord btn-lg">
-                    <i class="fab fa-discord"></i>
-                    Add Bot to Discord Server
-                </a>
-                <p class="text-white mt-3 mb-0" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                    Get automatic code notifications in your Discord server!
-                </p>
+<body>
+<div class="page">
+    <header>
+        <div class="header-deco" aria-hidden="true">
+            <div class="header-deco-line"></div>
+            <div class="header-deco-diamond"></div>
+            <div class="header-deco-line right"></div>
+        </div>
+        <h1 class="site-title">
+            HoYo Game Codes
+            <span class="site-title-jp">活動中の引き換えコード — Active Redemption Codes</span>
+        </h1>
+    </header>
+
+    <main>
+        <!-- Invite -->
+        <div class="invite-section">
+            <a href="https://discord.com/oauth2/authorize?client_id=1365996720210579476&scope=bot%20applications.commands&permissions=0"
+               target="_blank"
+               class="btn-invite">
+                <i class="fab fa-discord"></i>
+                Add Bot to Server
+            </a>
+            <span class="invite-caption">Automatic code notifications in your Discord server</span>
+        </div>
+
+        <!-- Game Tabs -->
+        <div class="tab-section">
+            <div class="tab-group" role="tablist" aria-label="Game selector">
+                <button class="tab-btn active" onclick="switchGame('genshin')" id="btn-genshin" role="tab" aria-selected="true">
+                    <i class="fas fa-star tab-icon"></i>Genshin Impact
+                </button>
+                <button class="tab-btn" onclick="switchGame('hsr')" id="btn-hsr" role="tab" aria-selected="false">
+                    <i class="fas fa-rocket tab-icon"></i>Star Rail
+                </button>
+                <button class="tab-btn" onclick="switchGame('zzz')" id="btn-zzz" role="tab" aria-selected="false">
+                    <i class="fas fa-bolt tab-icon"></i>Zenless ZZ
+                </button>
             </div>
         </div>
 
-        <!-- Game selector -->
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-8 col-lg-6">
-                <div class="game-selector">
-                    <div class="btn-group w-100" role="group" aria-label="Game selector">
-                        <button class="btn active" onclick="switchGame('genshin')" id="btn-genshin" aria-label="Genshin Impact codes">
-                            <i class="fas fa-star me-2"></i>Genshin Impact
-                        </button>
-                        <button class="btn" onclick="switchGame('hsr')" id="btn-hsr" aria-label="Honkai Star Rail codes">
-                            <i class="fas fa-rocket me-2"></i>Honkai: Star Rail
-                        </button>
-                        <button class="btn" onclick="switchGame('zzz')" id="btn-zzz" aria-label="Zenless Zone Zero codes">
-                            <i class="fas fa-bolt me-2"></i>Zenless Zone Zero
-                        </button>
-                    </div>
+        <!-- Code Card -->
+        <div class="card">
+
+            <!-- Card Header -->
+            <div class="card-header d-none" id="cardHeader">
+                <div>
+                    <div class="card-game-title" id="gameTitle">Genshin Impact</div>
+                    <div class="card-subtitle">Updated every 5 minutes · Auto-refreshes</div>
+                </div>
+                <button class="btn-refresh" onclick="fetchCodes()" aria-label="Refresh codes">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar d-none" id="statsBar">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalCodes">0</span>
+                    <span class="stat-label">Total Codes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="activeCodes">0</span>
+                    <span class="stat-label">Active</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="lastUpdated">—</span>
+                    <span class="stat-label">Updated</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Main content card -->
-        <div class="main-card">
-            <div class="card-body p-4">
-                <!-- Loading spinner -->
-                <div id="loadingSpinner" class="text-center py-5 loading-pulse">
-                    <div class="spinner-border text-white mb-3" style="width: 3rem; height: 3rem;" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <h4 class="text-white">Fetching latest codes...</h4>
-                    <p class="text-white-50">Please wait while we retrieve the most current redemption codes</p>
-                </div>
-
-                <!-- Error alert -->
-                <div id="errorAlert" class="alert error-alert d-none" role="alert">
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
-                        <h4 class="mb-0">Oops! Something went wrong</h4>
-                    </div>
-                    <p id="errorMessage" class="mb-3">We encountered an error while loading the codes.</p>
-                    <button class="btn btn-light" onclick="fetchCodes()">
-                        <i class="fas fa-redo me-2"></i>Try Again
-                    </button>
-                </div>
-
-                <!-- Controls -->
-                <div id="controls" class="d-flex justify-content-between align-items-center mb-4 d-none">
-                    <div>
-                        <h3 class="text-white mb-0">
-                            <span id="gameTitle">Genshin Impact</span> Codes
-                        </h3>
-                        <p class="text-white-50 mb-0">Updated every 5 minutes</p>
-                    </div>
-                    <button class="btn btn-refresh" onclick="fetchCodes()" aria-label="Refresh codes">
-                        <i class="fas fa-sync-alt me-2"></i>Refresh
-                    </button>
-                </div>
-
-                <!-- Codes statistics -->
-                <div id="statsContainer" class="row text-center mb-4 d-none">
-                    <div class="col-md-4">
-                        <div class="glass-effect p-3">
-                            <h4 class="text-white mb-1" id="totalCodes">0</h4>
-                            <small class="text-white-50">Total Codes</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="glass-effect p-3">
-                            <h4 class="text-white mb-1" id="activeCodes">0</h4>
-                            <small class="text-white-50">Active Codes</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="glass-effect p-3">
-                            <h4 class="text-white mb-1" id="lastUpdated">-</h4>
-                            <small class="text-white-50">Last Updated</small>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Table container -->
-                <div id="tableContainer" class="d-none fade-in">
-                    <div class="table-container">
-                        <div class="table-responsive">
-                            <table class="table table-hover mb-0">
-                                <thead>
-                                    <tr>
-                                        <th><i class="fas fa-code me-2"></i>Redemption Code</th>
-                                        <th><i class="fas fa-check-circle me-2"></i>Status</th>
-                                        <th><i class="fas fa-gift me-2"></i>Rewards</th>
-                                        <th><i class="fas fa-tools me-2"></i>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="codesTable">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- No codes message -->
-                <div id="noCodesMessage" class="text-center py-5 d-none">
-                    <i class="fas fa-inbox fa-3x text-white-50 mb-3"></i>
-                    <h4 class="text-white">No active codes available</h4>
-                    <p class="text-white-50">Check back later for new redemption codes!</p>
-                </div>
+            <!-- Loading -->
+            <div id="loadingState" class="loading-state">
+                <div class="spinner" aria-hidden="true"></div>
+                <p class="loading-text">Fetching codes...</p>
             </div>
+
+            <!-- Error -->
+            <div id="errorState" class="error-state d-none">
+                <div class="error-icon"><i class="fas fa-exclamation-circle"></i></div>
+                <p class="error-msg" id="errorMessage">Failed to load codes.</p>
+                <button class="btn-action" onclick="fetchCodes()">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+
+            <!-- Empty -->
+            <div id="emptyState" class="empty-state d-none">
+                <span class="empty-jp" aria-hidden="true">コードなし</span>
+                <p class="empty-msg">No active codes available — check back later</p>
+            </div>
+
+            <!-- Table -->
+            <div id="tableContainer" class="table-wrap d-none fade-in">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Redemption Code</th>
+                            <th>Status</th>
+                            <th>Rewards</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="codesTable"></tbody>
+                </table>
+            </div>
+
+        </div><!-- .card -->
+
+        <div class="divider" aria-hidden="true">
+            <div class="divider-line"></div>
+            <span class="divider-text">終わり — End of List</span>
+            <div class="divider-line"></div>
         </div>
-    </div>    <!-- Top.gg Widget -->
-    <div class="topgg-widget">
-        <h3 class="text-white mb-3">
-            <i class="fas fa-star me-2"></i>Rate Our Bot
-        </h3>
-        <a href="https://top.gg/bot/1365996720210579476" target="_blank" rel="noopener noreferrer">
-            <img src="https://top.gg/api/widget/1365996720210579476.svg" alt="HoYo Code Sender Bot Widget" loading="lazy">
-        </a>
-        <p class="text-white-50 mt-3 mb-0">Help us grow by rating our bot on Top.gg!</p>
-    </div>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <div class="d-flex justify-content-center gap-4 flex-wrap">
-                <!-- GitHub Link -->
-                <a href="https://github.com/neionri" 
-                   class="footer-link" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                    <span>View on GitHub</span>
-                </a>
-                
-                <!-- GitHub Sponsors -->
-                <a href="https://github.com/sponsors/neionri" 
-                   class="footer-link" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <i class="fas fa-heart text-danger"></i>
-                    <span>Sponsor</span>
-                </a>
-                
-                <!-- Discord Support -->
-                <a href="https://discord.gg/Wy2U46pCXZ" 
-                   class="footer-link" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <i class="fab fa-discord"></i>
-                    <span>Support Server</span>
-                </a>
-                
-                <!-- Donate -->
-                <a href="https://sociabuzz.com/neionri" 
-                   class="footer-link" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <i class="fas fa-heart"></i>
-                    <span>Donate</span>
-                </a>
-            </div>
-            <div class="mt-4">
-                <p class="mb-1" style="color: #6c757d; font-weight: 600;">
-                    <script>document.write(new Date().getFullYear());</script> 
-                    <a href="https://github.com/neionri" target="_blank" rel="noopener noreferrer" style="color: #495057; text-decoration: none;">Neionri</a>
-                </p>
-                <small style="color: #6c757d;">
-                    Made with <i class="fas fa-heart text-danger"></i> for the HoYoverse community
-                </small>
-            </div>        </div>    </footer><script>
-        let currentGame = 'genshin';
-        
-        const gameNames = {
-            'genshin': 'Genshin Impact',
-            'hsr': 'Honkai: Star Rail',
-            'zzz': 'Zenless Zone Zero'
-        };
+    <footer>
+        <nav class="footer-links" aria-label="Footer links">
+            <a href="https://github.com/neionri" class="footer-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://github.com/sponsors/neionri" class="footer-link" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-heart"></i> Sponsor
+            </a>
+            <a href="https://discord.gg/Wy2U46pCXZ" class="footer-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-discord"></i> Support
+            </a>
+            <a href="https://sociabuzz.com/neionri" class="footer-link" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-gift"></i> Donate
+            </a>
+        </nav>
+        <p class="footer-copy">
+            <script>document.write(new Date().getFullYear())</script>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/neionri" target="_blank" rel="noopener noreferrer">Neionri</a>
+            &nbsp;·&nbsp; Made with care for the HoYoverse community
+        </p>
+    </footer>
+</div><!-- .page -->
 
-        const gameIcons = {
-            'genshin': 'fas fa-star',
-            'hsr': 'fas fa-rocket',
-            'zzz': 'fas fa-bolt'
-        };
+<script>
+    /* ─── Config ────────────────────────────────────── */
+    let currentGame = 'genshin';
 
-        const redeemUrls = {
-            'genshin': 'https://genshin.hoyoverse.com/en/gift',
-            'hsr': 'https://hsr.hoyoverse.com/gift',
-            'zzz': 'https://zenless.hoyoverse.com/redemption'
-        };        // Load background image on page load
-        function loadBackgroundImage() {
-            // Set background to pic.re directly - no caching needed
-            document.body.style.backgroundImage = 'url("https://pic.re/image")';
-            console.log('Background image set to pic.re');
-        }
+    const GAME_NAMES = {
+        genshin: 'Genshin Impact',
+        hsr:     'Honkai: Star Rail',
+        zzz:     'Zenless Zone Zero'
+    };
 
-        function switchGame(game) {
-            // Update active button
-            document.querySelectorAll('.game-selector .btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById(`btn-${game}`).classList.add('active');
-            
-            // Update current game and fetch new codes
-            currentGame = game;
-            document.getElementById('gameTitle').textContent = gameNames[game];
-            fetchCodes();
-        }
+    const REDEEM_URLS = {
+        genshin: 'https://genshin.hoyoverse.com/en/gift',
+        hsr:     'https://hsr.hoyoverse.com/gift',
+        zzz:     'https://zenless.hoyoverse.com/redemption'
+    };
 
-        async function fetchCodes() {
-            // Show loading state
-            showElement('loadingSpinner');
-            hideElement('tableContainer');
-            hideElement('errorAlert');
-            hideElement('controls');
-            hideElement('statsContainer');
-            hideElement('noCodesMessage');
+    /* ─── DOM helpers ───────────────────────────────── */
+    const $ = id => document.getElementById(id);
 
-            try {
-                const response = await fetch(`/api/codes/${currentGame}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                const data = await response.json();
-                
-                if (data.codes && data.codes.length > 0) {
-                    populateTable(data);
-                    updateStats(data);
-                    showElement('tableContainer');
-                    showElement('controls');
-                    showElement('statsContainer');
-                } else {
-                    showElement('noCodesMessage');
-                    showElement('controls');
-                }
+    function show(id) { $(id)?.classList.remove('d-none'); }
+    function hide(id) { $(id)?.classList.add('d-none'); }
 
-                hideElement('loadingSpinner');
-            } catch (error) {
-                console.error('Error fetching codes:', error);
-                hideElement('loadingSpinner');
-                showElement('errorAlert');
-                document.getElementById('errorMessage').textContent = 
-                    `Failed to load codes for ${gameNames[currentGame]}. ${error.message}`;
-            }
-        }
-
-        function populateTable(data) {
-            const tableBody = document.getElementById('codesTable');
-            tableBody.innerHTML = '';
-              data.codes.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.className = 'fade-in';
-                
-                const statusClass = item.status === 'OK' ? 'success' : 'warning';
-                const rewardsText = item.rewards || 'Rewards not specified';
-                
-                row.innerHTML = `
-                    <td>
-                        <span class="code-badge">${item.code}</span>
-                    </td>
-                    <td>
-                        <span class="badge status-badge bg-${statusClass}">
-                            <i class="fas fa-check-circle me-1"></i>${item.status}
-                        </span>
-                    </td>
-                    <td>
-                        <small class="text-muted">${rewardsText}</small>
-                    </td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-copy btn-sm" 
-                                    onclick="copyToClipboard('${item.code}')"
-                                    title="Copy code to clipboard">
-                                <i class="fas fa-copy me-1"></i>Copy
-                            </button>
-                            <a href="${redeemUrls[currentGame]}?code=${item.code}" 
-                               target="_blank" 
-                               class="btn btn-outline-primary btn-sm"
-                               title="Open redemption page">
-                                <i class="fas fa-external-link-alt me-1"></i>Redeem
-                            </a>
-                        </div>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        function updateStats(data) {
-            const totalCodes = data.codes.length;
-            const activeCodes = data.codes.filter(code => code.status === 'OK').length;
-            const now = new Date();
-            
-            document.getElementById('totalCodes').textContent = totalCodes;
-            document.getElementById('activeCodes').textContent = activeCodes;
-            document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
-        }        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                console.log('Code copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy text:', err);
-            });        }
-
-        function showElement(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.classList.remove('d-none');
-                element.classList.add('fade-in');
-            }
-        }
-
-        function hideElement(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.classList.add('d-none');
-                element.classList.remove('fade-in');
-            }        }
-
-        // Auto-refresh codes every 5 minutes
-        let autoRefreshInterval;
-
-        function startAutoRefresh() {
-            autoRefreshInterval = setInterval(() => {
-                console.log('Auto-refreshing codes...');
-                fetchCodes();
-            }, 5 * 60 * 1000); // 5 minutes
-        }
-
-        function stopAutoRefresh() {
-            if (autoRefreshInterval) {
-                clearInterval(autoRefreshInterval);
-            }
-        }
-
-        // Page visibility API to pause auto-refresh when tab is not visible
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopAutoRefresh();
-            } else {
-                startAutoRefresh();
-            }
-        });        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Clear any existing cache first
-            localStorage.removeItem('hoyo_cached_image_blob');
-            localStorage.removeItem('hoyo_cached_image_metadata');
-            localStorage.removeItem('hoyo_cached_image_timestamp');
-            console.log('Cache cleared on page load');
-            
-            loadBackgroundImage(); // Load background image first
-            fetchCodes();
-            startAutoRefresh();
-        });// Handle beforeunload to cleanup
-        window.addEventListener('beforeunload', () => {
-            stopAutoRefresh();
+    /* ─── Tab switching ─────────────────────────────── */
+    function switchGame(game) {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
         });
-    </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" 
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-            crossorigin="anonymous"></script>
+        $(`btn-${game}`).classList.add('active');
+        $(`btn-${game}`).setAttribute('aria-selected', 'true');
+        currentGame = game;
+        $('gameTitle').textContent = GAME_NAMES[game];
+        fetchCodes();
+    }
+
+    /* ─── Fetch codes ───────────────────────────────── */
+    async function fetchCodes() {
+        // reset
+        show('loadingState');
+        hide('tableContainer');
+        hide('errorState');
+        hide('emptyState');
+        hide('cardHeader');
+        hide('statsBar');
+
+        try {
+            const res = await fetch(`/api/codes/${currentGame}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+
+            hide('loadingState');
+            show('cardHeader');
+
+            if (data.codes && data.codes.length > 0) {
+                renderStats(data.codes);
+                renderTable(data.codes);
+                show('statsBar');
+                show('tableContainer');
+            } else {
+                show('emptyState');
+            }
+        } catch (err) {
+            hide('loadingState');
+            $('errorMessage').textContent = `Could not load ${GAME_NAMES[currentGame]} codes. ${err.message}`;
+            show('errorState');
+            show('cardHeader');
+        }
+    }
+
+    /* ─── Render stats ──────────────────────────────── */
+    function renderStats(codes) {
+        $('totalCodes').textContent  = codes.length;
+        $('activeCodes').textContent = codes.filter(c => c.status === 'OK').length;
+        $('lastUpdated').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    /* ─── Render table ──────────────────────────────── */
+    function renderTable(codes) {
+        const tbody = $('codesTable');
+        tbody.innerHTML = '';
+        tbody.classList.add('fade-in');
+
+        codes.forEach(item => {
+            const tr = document.createElement('tr');
+            const rewards = item.rewards || 'Rewards not specified';
+
+            tr.innerHTML = `
+                <td><span class="code-badge">${escHtml(item.code)}</span></td>
+                <td>
+                    <span class="status-ok">
+                        <span class="status-dot"></span>
+                        ${escHtml(item.status)}
+                    </span>
+                </td>
+                <td><span class="rewards-text">${escHtml(rewards)}</span></td>
+                <td>
+                    <div class="btn-row">
+                        <button class="btn-action"
+                                onclick="copyCode(this, '${escAttr(item.code)}')"
+                                data-code="${escAttr(item.code)}"
+                                title="Copy code">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <a href="${REDEEM_URLS[currentGame]}?code=${encodeURIComponent(item.code)}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-action"
+                           title="Open redeem page">
+                            <i class="fas fa-external-link-alt"></i> Redeem
+                        </a>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    /* ─── Copy to clipboard ─────────────────────────── */
+    async function copyCode(btn, code) {
+        try {
+            await navigator.clipboard.writeText(code);
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            }, 2000);
+        } catch {
+            btn.textContent = 'Error';
+        }
+    }
+
+    /* ─── Safety helpers ────────────────────────────── */
+    function escHtml(str) {
+        return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function escAttr(str) { return String(str).replace(/'/g, '&#39;'); }
+
+    /* ─── Auto-refresh ──────────────────────────────── */
+    let refreshTimer;
+
+    function startAutoRefresh() {
+        refreshTimer = setInterval(fetchCodes, 5 * 60 * 1000);
+    }
+    function stopAutoRefresh() { clearInterval(refreshTimer); }
+
+    document.addEventListener('visibilitychange', () => {
+        document.hidden ? stopAutoRefresh() : startAutoRefresh();
+    });
+
+    window.addEventListener('beforeunload', stopAutoRefresh);
+
+    /* ─── Init ──────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchCodes();
+        startAutoRefresh();
+    });
+</script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 A Discord bot that automatically fetches and sends redemption codes for HoYoverse games like **Genshin Impact**, **Honkai: Star Rail**, and **Zenless Zone Zero**. This bot allows users to receive the latest game codes directly in their Discord servers. [Invite the bot here](https://discord.com/oauth2/authorize?client_id=1124167011585511516&permissions=2147765312&integration_type=0&scope=bot+applications.commands) | [Bot website](https://neionri.xyz) | [Documentation](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot/wiki) | [💖 Donate](#-support-the-project)
 
+> **⚠️ Fork Notice:** This repository is a fork and modified version of the original [HoYo_Code_Sender_Discord_Bot](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot) created by [@chiraitori](https://github.com/chiraitori). All credits for the core logic go to the original author!
+>
 > **Special Thanks**: This bot uses the [HoYo Codes API](https://github.com/seriaati/hoyo-codes) by [@seria](https://github.com/seriaati) for fetching game codes. Thank you for providing this amazing service! 🙏
 
 ![Discord Bots](https://top.gg/api/widget/1124167011585511516.svg)
@@ -315,4 +317,5 @@ Love the project but don't have money to donate? No worries! Here are free ways 
 **Every star, vote, and share helps keep this project alive!** ❤️
 
 ## Thank You
+- Massive thanks to **[@chiraitori](https://github.com/chiraitori)** for building the original [HoYo_Code_Sender_Discord_Bot](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot).
 - Special thanks to [@seria](https://github.com/seriaati) for the [HoYo Codes API](https://github.com/seriaati/hoyo-codes)

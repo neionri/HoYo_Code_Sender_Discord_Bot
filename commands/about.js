@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const languageManager = require('../utils/language');
+const { DEVELOPER, BOT } = require('../config/botInfo');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,9 +9,8 @@ module.exports = {
 
     async execute(interaction) {
         try {
-            const client_id = process.env.CLIENT_ID;
             const embed = new EmbedBuilder()
-                .setColor('#00FF00')
+                .setColor('#5865F2')
                 .setTitle(await languageManager.getString('commands.about.title', interaction.guildId))
                 .setDescription(await languageManager.getString('commands.about.description', interaction.guildId))
                 .addFields(
@@ -20,38 +20,33 @@ module.exports = {
                     },
                     {
                         name: await languageManager.getString('commands.about.sourceCode', interaction.guildId),
-                        value: '[GitHub](https://github.com/neionri)'
+                        value: `[GitHub](${BOT.sourceCode})`
                     },
                     {
                         name: await languageManager.getString('commands.about.supportServer', interaction.guildId),
-                        value: '[Support Server](https://discord.gg/Wy2U46pCXZ)'
+                        value: `[Support Server](${BOT.support})`
                     },
                     {
                         name: await languageManager.getString('commands.about.inviteLink', interaction.guildId),
-                        value: `[Invite](https://discord.com/oauth2/authorize?client_id=${client_id}&permissions=2416331856&scope=applications.commands%20bot)`
+                        value: `[Invite](${BOT.inviteUrl(process.env.CLIENT_ID)})`
                     },
                     {
                         name: await languageManager.getString('commands.about.donate', interaction.guildId),
-                        value: '[Buy me a coffee](https://sociabuzz.com/neionri)'
+                        value: `[Sociabuzz](${DEVELOPER.donate}) • [Ko-fi](${DEVELOPER.kofi})`
                     },
                     {
                         name: await languageManager.getString('commands.about.sponsor', interaction.guildId) || 'GitHub Sponsors',
-                        value: '[GitHub Sponsors](https://github.com/sponsors/neionri)'
+                        value: `[GitHub Sponsors](${DEVELOPER.sponsor})`
                     },
                     {
                         name: await languageManager.getString('commands.about.devbio', interaction.guildId),
-                        value: '[Bio Link](https://neionri.xyz)'
+                        value: `[Bio Link](${DEVELOPER.bio})`
                     }
-                    
                 )
                 .setTimestamp();
 
-            await interaction.reply({
-                embeds: [embed],
-                ephemeral: true
-            });
-        }
-        catch (error) {
+            await interaction.reply({ embeds: [embed], ephemeral: true });
+        } catch (error) {
             console.error('Error in about command:', error);
             await interaction.reply({
                 content: await languageManager.getString('commands.about.error', interaction.guildId),
@@ -60,3 +55,4 @@ module.exports = {
         }
     }
 };
+

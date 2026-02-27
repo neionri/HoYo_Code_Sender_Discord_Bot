@@ -6,24 +6,11 @@ const Language = require('../models/Language');
 const UserSubscription = require('../models/UserSubscription');
 const languageManager = require('./language');
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const { GAME_NAMES, REDEEM_URLS, HOYO_API, DEVELOPER } = require('../config/botInfo');
 
-const gameNames = {
-    'genshin': 'Genshin Impact',
-    'hkrpg': 'Honkai: Star Rail',
-    'nap': 'Zenless Zone Zero'
-};
+const gameNames = GAME_NAMES;
 
-const gameEmojis = {
-    'genshin': '<:genshin:1368073403231375430>',
-    'hkrpg': '<:hsr:1368073099756703794>',
-    'nap': '<:zzz:1368073452174704763>'
-};
-
-const redeemUrls = {
-    'genshin': 'https://genshin.hoyoverse.com/en/gift',
-    'hkrpg': 'https://hsr.hoyoverse.com/gift',
-    'nap': 'https://zenless.hoyoverse.com/redemption'
-};
+const redeemUrls = REDEEM_URLS;
 
 const roleMapping = {
     'genshin': 'genshinRole',
@@ -37,13 +24,6 @@ const settingsMapping = {
     'nap': 'nap'
 };
 
-// Support links for donations
-const supportLinks = {
-    kofi: 'https://ko-fi.com/neionri',
-    sponsors: 'https://github.com/sponsors/neionri',
-    paypal: 'https://sociabuzz.com/neionri',
-    banking: 'Use /about command for Vietnamese banking details'
-};
 
 async function checkAndSendNewCodes(client) {
     console.log('Starting code check process...');
@@ -71,7 +51,7 @@ async function checkAndSendNewCodes(client) {
         const allExistingCodes = await Code.find({}).lean();
         const existingCodesSet = new Set(allExistingCodes.map(code => `${code.game}:${code.code}`));        // Fetch all games' codes in parallel
         const gameCodeRequests = games.map(game => 
-            axios.get(`https://hoyo-codes.seria.moe/codes?game=${game}`, {
+            axios.get(`${HOYO_API.codesEndpoint}?game=${game}`, {
                 timeout: 15000, // 15 second timeout
                 headers: {
                     'User-Agent': 'HoYo-Code-Sender-Bot/1.0'
@@ -334,6 +314,26 @@ async function sendCodeNotification(client, config, settings, game, codes, guild
                 // Missing embed links permission, notify owner once
                 await notifyGuildOwnerMissingPermissions(client, guild, config, 'EmbedLinks');
                 canSendToChannel = false;
+            } else {
+                // Fix #5: Permission is OK — reset notified flags so owner can be re-notified
+                // if a new problem occurs in the future (e.g. permission removed again later)
+                if (config.notifications?.permissionMissing?.notified) {
+                    await Config.updateOne(
+                        { guildId },
+                        {
+                            $set: {
+                                'notifications.permissionMissing.notified': false,
+                                'notifications.permissionMissing.permission': null
+                            }
+                        }
+                    );
+                }
+                if (config.notifications?.channelMissing?.notified) {
+                    await Config.updateOne(
+                        { guildId },
+                        { $set: { 'notifications.channelMissing.notified': false } }
+                    );
+                }
             }
             // If we reach here without setting to false, canSendToChannel remains true
         }
@@ -370,7 +370,7 @@ async function sendCodeNotification(client, config, settings, game, codes, guild
         const supportMsg = await languageManager.getString(
             'common.supportMsg', 
             guildId
-        ) || '❤️ Support: ko-fi.com/neionri | sociabuzz.com/neionri | github.com/sponsors/neionri';
+        ) || `❤️ Support: ${DEVELOPER.kofi.replace('https://', '')} | ${DEVELOPER.donate.replace('https://', '')} | ${DEVELOPER.sponsor.replace('https://', '')}`;
 
         const embed = new EmbedBuilder()
             .setColor('#00ff00')
@@ -387,26 +387,14 @@ async function sendCodeNotification(client, config, settings, game, codes, guild
 
         if (roleId) {
             content = `<@&${roleId}>`;
-            // Check role mention permissions (only if we have a channel to check)
-            if (channel) {
-                const channelPermissions = channel.permissionsFor(botMember);
-                if (channelPermissions && channelPermissions.has(PermissionFlagsBits.MentionEveryone)) {
-                    allowedMentions = {
-                        roles: [roleId]
-                    };
-                } else {
-                    // Can't mention roles, just send without mentions
-                    content = '';
-                    allowedMentions = {
-                        roles: []
-                    };
-                }
-            } else {
-                // No channel to check permissions, allow mentions for threads
-                allowedMentions = {
-                    roles: [roleId]
-                };
-            }
+            // Fix #3: MentionEveryone hanya diperlukan untuk @everyone/@here.
+            // Untuk mention @role biasa, SendMessages sudah cukup — tidak perlu MentionEveryone.
+            // Role yang memiliki "Allow anyone to @mention this role" di settings Discord
+            // bisa di-mention oleh siapa saja; jika tidak, hanya member dengan MentionEveryone
+            // yang bisa mention. Bot umumnya punya izin ini dari role setup.
+            // Kita tetap allow mention jika kita punya SendMessages, dan biarkan Discord yang
+            // menentukan apakah mention akan mengirim notif atau tidak berdasarkan role settings.
+            allowedMentions = { roles: [roleId] };
         }
 
         // Send the message to main channel (if enabled and has permissions)
@@ -428,34 +416,34 @@ async function sendCodeNotification(client, config, settings, game, codes, guild
                     'nap': 'zzz'
                 };
                 
+                const { ChannelType } = require('discord.js');
                 const threadKey = threadMapping[game];
                 const threadId = config.forumThreads[threadKey];
                 
                 if (threadId) {
                     const forumThread = guild.channels.cache.get(threadId);
                     if (forumThread) {
-                        const { ChannelType } = require('discord.js');
                         // Verify it's actually a thread
                         if ([ChannelType.PublicThread, ChannelType.PrivateThread, ChannelType.AnnouncementThread].includes(forumThread.type)) {
-                            const botMember = await guild.members.fetch(client.user.id);
-                            const threadPermissions = forumThread.permissionsFor(botMember);
+                            const freshBotMember = await guild.members.fetch(client.user.id);
+                            const threadPermissions = forumThread.permissionsFor(freshBotMember);
                             
                             if (threadPermissions && threadPermissions.has(['ViewChannel', 'SendMessages', 'EmbedLinks'])) {
                                 // Get the role for this game to mention in thread
-                                const roleMapping = {
+                                const threadRoleMap = {
                                     'genshin': config.genshinRole,
                                     'hkrpg': config.hsrRole,
                                     'nap': config.zzzRole
                                 };
                                 
-                                const roleId = roleMapping[game];
+                                const threadRoleId = threadRoleMap[game];
                                 let threadContent = '';
                                 let threadAllowedMentions = { roles: [] };
                                 
-                                // Add role mention if role is configured and bot has permission
-                                if (roleId && threadPermissions.has(PermissionFlagsBits.MentionEveryone)) {
-                                    threadContent = `<@&${roleId}>`;
-                                    threadAllowedMentions = { roles: [roleId] };
+                                // Fix #3: Sama seperti channel — tidak perlu MentionEveryone untuk @role biasa
+                                if (threadRoleId) {
+                                    threadContent = `<@&${threadRoleId}>`;
+                                    threadAllowedMentions = { roles: [threadRoleId] };
                                 }
                                 
                                 // Send to the dedicated thread with role mention
@@ -540,7 +528,7 @@ async function sendDMNotification(client, subscription, game, codes) {
         const supportMsg = await languageManager.getString(
             'common.supportMsg', 
             null
-        ) || '❤️ Support: ko-fi.com/neionri | sociabuzz.com/neionri | github.com/sponsors/neionri';
+        ) || `❤️ Support: ${DEVELOPER.kofi.replace('https://', '')} | ${DEVELOPER.donate.replace('https://', '')} | ${DEVELOPER.sponsor.replace('https://', '')}`;
 
         const embed = new EmbedBuilder()
             .setColor('#00ff00')

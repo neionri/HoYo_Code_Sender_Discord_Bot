@@ -3,6 +3,7 @@ const { Api } = require('@top-gg/sdk');
 const languageManager = require('../utils/language');
 const Config = require('../models/Config');
 const { trackVoteCommand } = require('../utils/topggWebhook');
+const { BOT } = require('../config/botInfo');
 
 // Initialize the Top.gg API client if token is available
 let api;
@@ -61,7 +62,7 @@ module.exports = {
                     },
                     {
                         name: linkText,
-                        value: '[Top.gg](https://top.gg/bot/1124167011585511516/vote)'
+                        value: `[Top.gg](${BOT.topggVote})`
                     }
                 )
                 .setTimestamp();

@@ -3,23 +3,12 @@ const Config = require('../models/Config');
 const Settings = require('../models/Settings');
 const LivestreamTracking = require('../models/LivestreamTracking');
 const { getState } = require('./hoyolabAPI');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
 
 /**
  * Auto-distribution system for livestream codes
  * Distributes codes to all guilds when STATE = 5 (Found)
  */
-
-const GAME_NAMES = {
-    'genshin': 'Genshin Impact',
-    'hkrpg': 'Honkai: Star Rail',
-    'nap': 'Zenless Zone Zero'
-};
-
-const REDEEM_URLS = {
-    'genshin': 'https://genshin.hoyoverse.com/en/gift',
-    'hkrpg': 'https://hsr.hoyoverse.com/gift',
-    'nap': 'https://zenless.hoyoverse.com/redemption'
-};
 
 const ROLE_MAPPING = {
     'genshin': 'genshinRole',

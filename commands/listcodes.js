@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 const axios = require('axios');
 const Code = require('../models/Code');
 const languageManager = require('../utils/language');
+const { GAME_NAMES, REDEEM_URLS, HOYO_API } = require('../config/botInfo');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,19 +27,14 @@ module.exports = {
             // Make the response ephemeral (visible only to the user who used the command)
             await interaction.reply({ content: loadingMessage, ephemeral: true });
 
-            const response = await axios.get(`https://hoyo-codes.seria.moe/codes?game=${game}`, {
+            const response = await axios.get(`${HOYO_API.codesEndpoint}?game=${game}`, {
                 timeout: 10000, // 10 second timeout
                 headers: {
                     'User-Agent': 'HoYo-Code-Sender-Bot/1.0'
                 }
             });
             
-            // Get game choice
-            const gameNames = {
-                'genshin': 'Genshin Impact',
-                'hkrpg': 'Honkai: Star Rail',
-                'nap': 'Zenless Zone Zero'
-            };
+            const gameNames = GAME_NAMES;
             
             // Get game emojis
             const gameEmojis = {
@@ -66,11 +62,7 @@ module.exports = {
             // Add emoji to title
             title = `${gameEmojis[game]} ${title}`;
 
-            const redeemUrls = {
-                'genshin': 'https://genshin.hoyoverse.com/en/gift',
-                'hkrpg': 'https://hsr.hoyoverse.com/gift',
-                'nap': 'https://zenless.hoyoverse.com/redemption'
-            };
+            const redeemUrls = REDEEM_URLS;
 
             // Get translated strings in advance
             const redeemHeader = await languageManager.getString('commands.listcodes.redeemHeader', interaction.guildId);

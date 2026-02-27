@@ -1,6 +1,3 @@
-const { version } = require("mongoose");
-const about = require("../commands/about");
-
 module.exports = {
     games: {
         genshin: 'Genshin Impact',
@@ -78,17 +75,6 @@ module.exports = {
             noticeText: 'Ini adalah kode demo hanya untuk tujuan pengujian. Kode ini tidak akan berfungsi di dalam game.',
             success: 'Berhasil mengirim kode demo untuk {count} game!',
             error: 'Terjadi kesalahan saat mengirim kode demo.'
-        },
-        deletesetup: {
-            noPermission: 'Kamu tidak memiliki izin untuk menggunakan perintah ini.',
-            loading: 'Menghapus konfigurasi server...',
-            success: 'Konfigurasi server berhasil dihapus.',
-            noConfig: 'Tidak ada konfigurasi yang ditemukan untuk server ini.',
-            error: 'Terjadi kesalahan saat menghapus konfigurasi server.',
-            deletedItemsHeader: 'Item yang dihapus:',
-            deletedConfig: 'Pengaturan saluran dan role',
-            deletedSettings: 'Pengaturan notifikasi',
-            deletedLanguage: 'Pengaturan bahasa'
         },
         postcode: {
             modalTitle: 'Tambahkan Kode Penukaran',

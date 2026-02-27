@@ -2,24 +2,11 @@ const { SlashCommandBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, Act
 const Config = require('../models/Config');
 const languageManager = require('../utils/language');
 const { handleDMRestriction } = require('../utils/dmHandler');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
 
-const gameNames = {
-    'genshin': 'Genshin Impact',
-    'hsr': 'Honkai: Star Rail',
-    'zzz': 'Zenless Zone Zero'
-};
+const gameNames = GAME_NAMES;
 
-const gameEmojis = {
-    'genshin': '<:genshin:1368073403231375430>',
-    'hsr': '<:hsr:1368073099756703794>',
-    'zzz': '<:zzz:1368073452174704763>'
-};
-
-const postcodeUrls = {
-    'genshin': 'https://genshin.hoyoverse.com/en/gift',
-    'hsr': 'https://hsr.hoyoverse.com/gift',
-    'zzz': 'https://zzz.hoyoverse.com/gift'
-};
+const postcodeUrls = REDEEM_URLS;
 
 const roleMappings = {
     'genshin': 'genshinRole',
