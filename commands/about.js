@@ -20,11 +20,11 @@ module.exports = {
                     },
                     {
                         name: await languageManager.getString('commands.about.sourceCode', interaction.guildId),
-                        value: '[GitHub](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot)'
+                        value: '[GitHub](https://github.com/neionri)'
                     },
                     {
                         name: await languageManager.getString('commands.about.supportServer', interaction.guildId),
-                        value: '[Support Server](https://discord.gg/DtuKCEkXzY)'
+                        value: '[Support Server](https://discord.gg/Wy2U46pCXZ)'
                     },
                     {
                         name: await languageManager.getString('commands.about.inviteLink', interaction.guildId),
@@ -32,15 +32,15 @@ module.exports = {
                     },
                     {
                         name: await languageManager.getString('commands.about.donate', interaction.guildId),
-                        value: '[Buy me a coffee](https://ko-fi.com/chiraitori)'
+                        value: '[Buy me a coffee](https://sociabuzz.com/neionri)'
                     },
                     {
                         name: await languageManager.getString('commands.about.sponsor', interaction.guildId) || 'GitHub Sponsors',
-                        value: '[GitHub Sponsors](https://github.com/sponsors/chiraitori)'
+                        value: '[GitHub Sponsors](https://github.com/sponsors/neionri)'
                     },
                     {
                         name: await languageManager.getString('commands.about.devbio', interaction.guildId),
-                        value: '[Bio Link](https://chiraitori.me)'
+                        value: '[Bio Link](https://neionri.xyz)'
                     }
                     
                 )

@@ -148,7 +148,7 @@ async function sendYearChangeMessage(client, config, guildId, currentYear, langu
                 `Dù lời nhắn này đến với mọi người có hơi sớm hay hơi trễ một chút, thì khoảnh khắc bước sang năm ${currentYear} này, mình muốn gửi một lời cảm ơn to lớn đến tất cả các bạn.\n\n` +
                 `Thú thật là, ban đầu con bot này chỉ là một dự án nhỏ mình làm để cho bạn bè dùng thôi, rồi up lên top.gg cho vui. Mình chưa bao giờ nghĩ là nó sẽ được nhiều người biết đến và mời về server nhiều đến thế! Sự ủng hộ của mọi người thực sự là một bất ngờ quá lớn và mình vô cùng biết ơn vì điều đó.\n\n` +
                 `Năm mới này, mình xin hứa sẽ cố gắng làm việc chăm chỉ hơn để bot hoạt động ổn định và mang đến những tính năng mới xịn sò trong vài tháng tới. Cảm ơn mọi người đã đồng hành cùng mình.\n\n` +
-                `Chúc mừng năm mới! Mình là [Chiraitori](https://chiraitori.dev), người đã tạo ra con bot này.`;
+                `Chúc mừng năm mới! Mình là [Neionri](https://neionri.xyz), người đã tạo ra con bot này.`;
         } else {
             // English message (default)
             title = `🎉 Happy New Year ${currentYear}!`;
@@ -156,7 +156,7 @@ async function sendYearChangeMessage(client, config, guildId, currentYear, langu
                 `Whether this message reaches you a bit early or a little late, as we step into ${currentYear}, I just want to say a huge thank you to everyone.\n\n` +
                 `Honestly, this bot started out as a simple project just for my close friends. I uploaded it to top.gg mainly for fun, never expecting it to blow up like this. Seeing so many invites and people using it has been a huge surprise, and I am truly grateful for every single one of you.\n\n` +
                 `My promise for this new year is to work hard on stability and bring you guys some exciting new features in the coming months. Thank you for being part of this journey.\n\n` +
-                `Happy New Year! I'm [Chiraitori](https://chiraitori.dev), the creator of this bot.`;
+                `Happy New Year! I'm [Neionri](https://neionri.xyz), the creator of this bot.`;
         }
 
         // Create the embed message
@@ -164,7 +164,7 @@ async function sendYearChangeMessage(client, config, guildId, currentYear, langu
             .setColor('#FFD700') // Gold/festive color
             .setTitle(title)
             .setDescription(description)
-            .setFooter({ text: 'https://chiraitori.dev' })
+            .setFooter({ text: 'https://neionri.xyz' })
             .setTimestamp();
 
         // Send the message (no role mentions)
