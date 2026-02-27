@@ -16,6 +16,7 @@ module.exports = {
                 .setRequired(true)
                 .addChoices(
                     { name: 'English', value: 'en' },
+                    { name: 'Indonesian', value: 'id' },
                     { name: 'Japanese', value: 'jp' },
                     { name: 'Vietnamese', value: 'vi' }
                 )),
