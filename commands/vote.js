@@ -3,7 +3,7 @@ const { Api } = require('@top-gg/sdk');
 const languageManager = require('../utils/language');
 const Config = require('../models/Config');
 const { trackVoteCommand } = require('../utils/topggWebhook');
-const { BOT } = require('../config/botInfo');
+const { BOT } = require('../config/botinfo');
 
 // Initialize the Top.gg API client if token is available
 let api;

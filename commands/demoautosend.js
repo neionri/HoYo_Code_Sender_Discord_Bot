@@ -5,7 +5,7 @@ const languageManager = require('../utils/language');
 const { hasAdminPermission } = require('../utils/permissions');
 const { validateChannel } = require('../utils/channelValidator');
 const { handleDMRestriction } = require('../utils/dmHandler');
-const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botinfo');
 
 // Game information mapping
 const gameNames = GAME_NAMES;

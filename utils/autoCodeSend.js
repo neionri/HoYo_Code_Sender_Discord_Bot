@@ -6,7 +6,7 @@ const Language = require('../models/Language');
 const UserSubscription = require('../models/UserSubscription');
 const languageManager = require('./language');
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const { GAME_NAMES, REDEEM_URLS, HOYO_API, DEVELOPER } = require('../config/botInfo');
+const { GAME_NAMES, REDEEM_URLS, HOYO_API, DEVELOPER } = require('../config/botinfo');
 
 const gameNames = GAME_NAMES;
 

@@ -3,7 +3,7 @@ const Config = require('../models/Config');
 const Settings = require('../models/Settings');
 const LivestreamTracking = require('../models/LivestreamTracking');
 const { getState } = require('./hoyolabAPI');
-const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botinfo');
 
 /**
  * Auto-distribution system for livestream codes

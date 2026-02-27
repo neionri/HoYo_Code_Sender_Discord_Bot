@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 const axios = require('axios');
 const Code = require('../models/Code');
 const languageManager = require('../utils/language');
-const { GAME_NAMES, REDEEM_URLS, HOYO_API } = require('../config/botInfo');
+const { GAME_NAMES, REDEEM_URLS, HOYO_API } = require('../config/botinfo');
 
 module.exports = {
     data: new SlashCommandBuilder()

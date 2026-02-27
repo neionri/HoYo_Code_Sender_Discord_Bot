@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, Act
 const Config = require('../models/Config');
 const languageManager = require('../utils/language');
 const { handleDMRestriction } = require('../utils/dmHandler');
-const { GAME_NAMES, REDEEM_URLS } = require('../config/botInfo');
+const { GAME_NAMES, REDEEM_URLS } = require('../config/botinfo');
 
 const gameNames = GAME_NAMES;
 

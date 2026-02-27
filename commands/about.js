@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const languageManager = require('../utils/language');
-const { DEVELOPER, BOT } = require('../config/botInfo');
+const { DEVELOPER, BOT } = require('../config/botinfo');
 
 module.exports = {
     data: new SlashCommandBuilder()
