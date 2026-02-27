@@ -11,7 +11,7 @@ module.exports = {
         enabled: 'ENABLED',
         disabled: 'DISABLED',
         notYourButton: 'This button is not for you.',
-        supportMsg: '❤️ Help the developer: ko-fi.com/chiraitori | github.com/sponsors/chiraitori | paypal.me/chiraitori'
+        supportMsg: '❤️ Help the developer: ko-fi.com/neionri | github.com/sponsors/neionri | sociabuzz.com/neionri'
     },
     welcome: {
         title: 'Thanks for Adding HoYo Code Sender!',

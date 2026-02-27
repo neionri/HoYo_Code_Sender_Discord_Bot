@@ -148,7 +148,7 @@ export default function ServerPicker({ onServerSelect }: ServerPickerProps) {
             </span>
           </h1>
           <p className="text-violet-200/80 text-xl max-w-2xl mx-auto font-medium leading-relaxed">
-            Welcome back, <span className="text-accent-cyan font-bold">chiraitori</span>!
+            Welcome back, <span className="text-accent-cyan font-bold">neionri</span>!
             Select a server to manage configuration or invite the bot to a new community.
           </p>
 

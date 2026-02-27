@@ -74,9 +74,9 @@ We may update our Privacy Policy from time to time. We will notify users of any 
 
 If you have any questions about this Privacy Policy, please contact us:
 
-- Through our [Discord support server](https://dsc.gg/chiraitori-support)
-- By creating an issue on our [GitHub repository](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot)
-- By email at: [mail@chiraitori.io.vn](mailto:mail@chiraitori.io.vn)
+- Through our [Discord support server](https://dsc.gg/neionri-support)
+- By creating an issue on our [GitHub repository](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot)
+- By email at: [neionri.id@gmail.com](mailto:neionri.id@gmail.com)
 
 ## Consent
 

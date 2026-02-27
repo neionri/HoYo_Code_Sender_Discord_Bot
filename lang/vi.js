@@ -11,7 +11,7 @@ module.exports = {
         enabled: 'BẬT',
         disabled: 'TẮT',
         notYourButton: 'Nút này không dành cho bạn.',
-        supportMsg: '❤️ Hỗ trợ nhà phát triển: ko-fi.com/chiraitori | github.com/sponsors/chiraitori | paypal.me/chiraitori | chiraitori.me'
+        supportMsg: '❤️ Hỗ trợ nhà phát triển: ko-fi.com/neionri | github.com/sponsors/neionri | sociabuzz.com/neionri | neionri.xyz'
     },
     welcome: {
         title: 'Cảm ơn đã thêm HoYo Code Sender!',

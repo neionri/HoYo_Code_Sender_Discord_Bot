@@ -1,6 +1,6 @@
 # HoYo Code Sender Discord Bot
 
-A Discord bot that automatically fetches and sends redemption codes for HoYoverse games like **Genshin Impact**, **Honkai: Star Rail**, and **Zenless Zone Zero**. This bot allows users to receive the latest game codes directly in their Discord servers. [Invite the bot here](https://discord.com/oauth2/authorize?client_id=1124167011585511516&permissions=2147765312&integration_type=0&scope=bot+applications.commands) | [Bot website](https://hoyo-code.chiraitori.me) | [Documentation](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot/wiki) | [💖 Donate](#-support-the-project)
+A Discord bot that automatically fetches and sends redemption codes for HoYoverse games like **Genshin Impact**, **Honkai: Star Rail**, and **Zenless Zone Zero**. This bot allows users to receive the latest game codes directly in their Discord servers. [Invite the bot here](https://discord.com/oauth2/authorize?client_id=1124167011585511516&permissions=2147765312&integration_type=0&scope=bot+applications.commands) | [Bot website](https://neionri.xyz) | [Documentation](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot/wiki) | [💖 Donate](#-support-the-project)
 
 > **Special Thanks**: This bot uses the [HoYo Codes API](https://github.com/seriaati/hoyo-codes) by [@seria](https://github.com/seriaati) for fetching game codes. Thank you for providing this amazing service! 🙏
 
@@ -60,7 +60,7 @@ A Discord bot that automatically fetches and sends redemption codes for HoYovers
 
 1. **Clone the repository**:
 ```bash
-   git clone https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot.git
+   git clone https://github.com/neionri/HoYo_Code_Sender_Discord_Bot.git
    cd HoYo_Code_Sender_Discord_Bot
 ```
 2. **Install dependencies (Bot):**
@@ -233,20 +233,20 @@ If you find this bot useful and want to support its development and maintenance,
 
 ### International Donations
 
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsors-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/chiraitori)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=for-the-badge&logo=ko-fi)](https://ko-fi.com/chiraitori)
-[![PayPal](https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal)](https://paypal.me/chiraitori)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsors-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/neionri)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=for-the-badge&logo=ko-fi)](https://ko-fi.com/neionri)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal)](https://paypal.me/neionri)
 
-- **GitHub Sponsors**: [github.com/sponsors/chiraitori](https://github.com/sponsors/chiraitori) ⭐ **RECOMMENDED**
+- **GitHub Sponsors**: [github.com/sponsors/neionri](https://github.com/sponsors/neionri) ⭐ **RECOMMENDED**
   - **Fee**: GitHub takes **0% fee**, you keep 100% ✅
   - Supports monthly recurring donations and one-time contributions
   - **Best option for maximizing your donation impact!**
   
-- **Ko-fi**: [ko-fi.com/chiraitori](https://ko-fi.com/chiraitori)
+- **Ko-fi**: [ko-fi.com/neionri](https://ko-fi.com/neionri)
   - **Fee**: Ko-fi **0% platform fee**, but processes through **PayPal** (PayPal fees ~2.9% + $0.30 apply) 💳
   - One-time or membership support
   
-- **PayPal**: [paypal.me/chiraitori](https://paypal.me/chiraitori)
+- **PayPal**: [paypal.me/neionri](https://paypal.me/neionri)
   - **Fee**: PayPal takes **2.9% + $0.30 USD** per transaction ⚠️
   - For international donations: additional **currency conversion fee (~3-4%)**
   - Direct PayPal transfer option
@@ -269,7 +269,7 @@ Got some Counter-Strike 2 skins you don't need? Trade them for bot support! 😄
 For Vietnamese users, you can donate via bank transfer or PayOS:
 
 #### 🏦 Bank Transfer (QR Code - No Fees)
-- **Website**: [chiraitori.io.vn](https://chiraitori.io.vn) - Scrow Down You Will See The **QR** Section
+- **Website**: [neionri.xyz](https://neionri.xyz) - Scrow Down You Will See The **QR** Section
 - **Bank**: MB Bank (Ngân hàng TMCP Quân Đội)
 - **Account Number**: `19071945512011`
 - **Account Name**: `NGUYEN TAN TU`
@@ -277,7 +277,7 @@ For Vietnamese users, you can donate via bank transfer or PayOS:
 - **Note**: Direct bank transfer via QR code has **NO FEES** ✅
 
 #### 💳 PayOS (Convenient Payment - Has Fees)
-- **Website**: [chiraitori.io.vn](https://chiraitori.io.vn) - Scrow Down You Will See The **"PayOS"** Section
+- **Website**: [neionri.xyz](https://neionri.xyz) - Scrow Down You Will See The **"PayOS"** Section
 - **Supported**: ATM cards, credit cards, e-wallets (MoMo, ZaloPay, etc.)
 - **Note**: PayOS charges a small transaction fee (~2-3%) ⚠️
 

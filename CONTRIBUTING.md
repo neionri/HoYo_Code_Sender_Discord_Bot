@@ -18,21 +18,21 @@ Thank you for your interest in contributing to the HoYo Code Sender Discord Bot!
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to [mail@chiraitori.io.vn](mailto:mail@chiraitori.io.vn).
+This project and everyone participating in it is governed by our Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to [neionri.id@gmail.com](mailto:neionri.id@gmail.com).
 
 ## Getting Started
 
 Before you begin:
 
 1. Make sure you have a [GitHub account](https://github.com/signup)
-2. Familiarize yourself with the project by reading the [documentation](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot/wiki)
-3. Check existing [issues](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot/issues) before creating a new one
+2. Familiarize yourself with the project by reading the [documentation](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot/wiki)
+3. Check existing [issues](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot/issues) before creating a new one
 
 ## How to Contribute
 
 ### Reporting Bugs
 
-If you find a bug in the bot, please create an issue on our [GitHub repository](https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot/issues) using the bug report template. Include:
+If you find a bug in the bot, please create an issue on our [GitHub repository](https://github.com/neionri/HoYo_Code_Sender_Discord_Bot/issues) using the bug report template. Include:
 
 - A clear and descriptive title
 - Steps to reproduce the issue
@@ -135,7 +135,7 @@ We welcome translations to make the bot accessible to more users:
 
 ## Community
 
-Join our [Discord support server](https://dsc.gg/chiraitori-support) to:
+Join our [Discord support server](https://dsc.gg/neionri-support) to:
 - Get help with development
 - Discuss ideas and improvements
 - Connect with other contributors

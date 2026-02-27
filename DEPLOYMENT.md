@@ -199,4 +199,4 @@ For deployment issues:
 1. Check the logs for specific error messages
 2. Verify all environment variables are set correctly
 3. Test connectivity to external services (Discord API, MongoDB)
-4. Join our [Discord support server](https://dsc.gg/chiraitori-support) for help
+4. Join our [Discord support server](https://dsc.gg/neionri-support) for help

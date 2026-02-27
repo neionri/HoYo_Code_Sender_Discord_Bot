@@ -31,7 +31,7 @@ A modern Next.js dashboard for displaying HoYoverse game redemption codes, desig
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/chiraitori/Hoyo-code-sender-dashboard.git
+git clone https://github.com/neionri/nxc7-code-reedem
 cd dashboard
 ```
 

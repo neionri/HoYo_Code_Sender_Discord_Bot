@@ -50,7 +50,7 @@ export default function Footer() {
               </p>
               <div className="flex items-center space-x-4">
                 <a
-                  href="https://github.com/chiraitori/HoYo_Code_Sender_Discord_Bot"
+                  href="https://github.com/neionri"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-violet-200 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
@@ -61,7 +61,7 @@ export default function Footer() {
                   </svg>
                 </a>
                 <a
-                  href="https://discord.gg/DtuKCEkXzY"
+                  href="https://discord.gg/Wy2U46pCXZ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-violet-200 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
@@ -72,7 +72,7 @@ export default function Footer() {
                   </svg>
                 </a>
                 <a
-                  href="https://top.gg/bot/1124167011585511516/vote"
+                  href="https://top.gg/bot/1365996720210579476/vote"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-violet-200 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
@@ -194,7 +194,7 @@ export default function Footer() {
           {/* Bottom section */}
           <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between">
             <div className="text-violet-200/40 text-sm mb-4 md:mb-0 font-medium">
-              &copy; {currentYear} Chiraitori. Not affiliated with HoYoverse.
+              &copy; {currentYear} Neionri. Not affiliated with HoYoverse.
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <button
