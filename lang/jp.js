@@ -261,6 +261,40 @@ module.exports = {
                 noSetup: '最初に `/setup` を実行してメイン通知チャンネルを設定してください。',
                 general: 'フォーラムスレッドの設定中にエラーが発生しました。'
             }
+        },
+        dmnotify: {
+            description: 'ダイレクトメッセージでゲームコードを受け取る',
+            subcommands: {
+                enable: 'DM通知を有効にする',
+                disable: 'DM通知を無効にする',
+                games: '通知を受け取るゲームを選択する',
+                status: '現在のDM通知ステータスを確認する'
+            },
+            status: {
+                title: '📬 DM通知ステータス',
+                enabled: '✅ **ステータス:** 有効',
+                disabled: '❌ **ステータス:** 無効',
+                gamesTitle: '受信中のゲーム:',
+                noGames: 'なし（コードを受信しません）',
+                footer: '/dmnotify games を使用して設定を変更できます'
+            },
+            enable: {
+                success: '✅ **DM通知が有効になりました！** これから新しいコードをDMで直接受け取ります。',
+                alreadyEnabled: '⚠️ DM通知は既に有効です。'
+            },
+            disable: {
+                success: '❌ **DM通知が無効になりました。** これからDMでコードを受信しません。',
+                alreadyDisabled: '⚠️ DM通知は既に無効です。'
+            },
+            games: {
+                success: '✅ **設定が更新されました！** 次のゲームのコードを受信します: **{games}**',
+                noGamesSelected: '⚠️ 全てのゲームを無効にしました。少なくとも一つのゲームを有効にするまでコードは受信されません。',
+                notEnabled: '⚠️ ゲーム設定は更新されましたが、DM通知は現在 **無効** です。`/dmnotify enable` で有効にできます。'
+            },
+            error: {
+                general: 'DM設定の更新中にエラーが発生しました。',
+                dmBlocked: '⚠️ メッセージを送信できませんでした！DMの設定を確認して再度お試しください。'
+            }
         }
     },
     errors: {

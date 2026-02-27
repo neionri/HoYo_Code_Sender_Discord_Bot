@@ -262,6 +262,40 @@ module.exports = {
                 noSetup: 'Silakan jalankan `/setup` terlebih dahulu untuk mengonfigurasi saluran notifikasi utama.',
                 general: 'Terjadi kesalahan saat mengatur thread forum.'
             }
+        },
+        dmnotify: {
+            description: 'Berlangganan untuk menerima kode game via Pesan Langsung (DM)',
+            subcommands: {
+                enable: 'Aktifkan notifikasi DM untuk kode game',
+                disable: 'Nonaktifkan notifikasi DM',
+                games: 'Pilih game mana yang ingin kamu terima kodenya',
+                status: 'Cek status notifikasi DM kamu saat ini'
+            },
+            status: {
+                title: '📬 Status Notifikasi DM Kamu',
+                enabled: '✅ **Status:** Aktif',
+                disabled: '❌ **Status:** Nonaktif',
+                gamesTitle: 'Game yang Diikuti:',
+                noGames: 'Tidak ada (Kamu tidak akan menerima kode apa pun!)',
+                footer: 'Gunakan /dmnotify games untuk mengubah preferensi kamu'
+            },
+            enable: {
+                success: '✅ **Notifikasi DM diaktifkan!** Kamu sekarang akan menerima kode baru langsung di DM kamu.',
+                alreadyEnabled: '⚠️ Notifikasi DM kamu sudah aktif.'
+            },
+            disable: {
+                success: '❌ **Notifikasi DM dinonaktifkan.** Kamu tidak akan lagi menerima kode di DM kamu.',
+                alreadyDisabled: '⚠️ Notifikasi DM kamu sudah nonaktif.'
+            },
+            games: {
+                success: '✅ **Preferensi diperbarui!** Kamu akan menerima kode untuk: **{games}**',
+                noGamesSelected: '⚠️ Kamu menonaktifkan semua game. Kamu tidak akan menerima kode apa pun sampai kamu mengaktifkan setidaknya satu game.',
+                notEnabled: '⚠️ Kamu memperbarui preferensi game kamu, tapi notifikasi DM kamu saat ini **nonaktif**. Gunakan `/dmnotify enable` untuk mengaktifkannya.'
+            },
+            error: {
+                general: 'Terjadi kesalahan saat memperbarui preferensi DM kamu.',
+                dmBlocked: '⚠️ Saya tidak bisa mengirimkan pesan kepadamu! Silakan periksa apakah DM kamu terbuka lalu coba lagi.'
+            }
         }
     },
     errors: {

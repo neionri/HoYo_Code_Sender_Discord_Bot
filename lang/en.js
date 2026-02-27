@@ -255,6 +255,40 @@ module.exports = {
                 noSetup: 'Please run `/setup` first to configure the main notification channel.',
                 general: 'An error occurred while setting up the forum threads.'
             }
+        },
+        dmnotify: {
+            description: 'Subscribe to receive game codes via Direct Message',
+            subcommands: {
+                enable: 'Enable DM notifications for game codes',
+                disable: 'Disable DM notifications',
+                games: 'Select which games to receive codes for',
+                status: 'Check your current DM notification status'
+            },
+            status: {
+                title: '📬 Your DM Notification Status',
+                enabled: '✅ **Status:** Active',
+                disabled: '❌ **Status:** Inactive',
+                gamesTitle: 'Subscribed Games:',
+                noGames: 'None (You won\'t receive any codes!)',
+                footer: 'Use /dmnotify games to change your preferences'
+            },
+            enable: {
+                success: '✅ **DM notifications enabled!** You will now receive new codes directly in your DMs.',
+                alreadyEnabled: '⚠️ Your DM notifications are already enabled.'
+            },
+            disable: {
+                success: '❌ **DM notifications disabled.** You will no longer receive codes in your DMs.',
+                alreadyDisabled: '⚠️ Your DM notifications are already disabled.'
+            },
+            games: {
+                success: '✅ **Preferences updated!** You will receive codes for: **{games}**',
+                noGamesSelected: '⚠️ You disabled all games. You won\'t receive any codes until you enable at least one game.',
+                notEnabled: '⚠️ You updated your game preferences, but your DM notifications are currently **disabled**. Use `/dmnotify enable` to turn them on.'
+            },
+            error: {
+                general: 'An error occurred while updating your DM preferences.',
+                dmBlocked: '⚠️ I couldn\'t send you a message! Please check if your DMs are open and try again.'
+            }
         }
     },
     errors: {

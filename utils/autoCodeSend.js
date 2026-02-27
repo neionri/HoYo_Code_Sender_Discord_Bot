@@ -3,6 +3,7 @@ const Code = require('../models/Code');
 const Config = require('../models/Config');
 const Settings = require('../models/Settings');
 const Language = require('../models/Language');
+const UserSubscription = require('../models/UserSubscription');
 const languageManager = require('./language');
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
@@ -49,11 +50,12 @@ async function checkAndSendNewCodes(client) {
     const games = ['genshin', 'hkrpg', 'nap'];
     
     try {
-        // Fetch all configurations, settings, and languages in parallel once
-        const [configs, allSettings, languages] = await Promise.all([
+        // Fetch all configurations, settings, languages, and user subscriptions in parallel once
+        const [configs, allSettings, languages, activeSubscriptions] = await Promise.all([
             Config.find({}).lean(),
             Settings.find({}).lean(),
-            Language.find({}).lean()
+            Language.find({}).lean(),
+            UserSubscription.find({ active: true }).lean()
         ]);
 
         // Create lookup maps to avoid repeated database queries
@@ -230,6 +232,38 @@ async function checkAndSendNewCodes(client) {
         // Execute all message sending tasks 
         if (messageTasks.length > 0) {
             await Promise.allSettled(messageTasks);
+        }
+
+        // Process DM Subscriptions
+        const dmTasks = [];
+        for (const game in newCodesForGames) {
+            const codes = newCodesForGames[game];
+            if (codes.length > 0) {
+                // Find all users subscribed to this game
+                const subscribedUsers = activeSubscriptions.filter(sub => sub.games[game]);
+                if (subscribedUsers.length > 0) {
+                    console.log(`Sending ${codes.length} ${game} codes to ${subscribedUsers.length} subscribed users via DM`);
+                    
+                    // Create base embed template (in english, can be localized later if needed)
+                    for (const sub of subscribedUsers) {
+                        dmTasks.push(sendDMNotification(client, sub, game, codes));
+                    }
+                }
+            }
+        }
+
+        // Execute DM sending tasks with throttling
+        if (dmTasks.length > 0) {
+            // Process DMs in chunks of 10 to avoid Discord API rate limits
+            const chunkSize = 10;
+            for (let i = 0; i < dmTasks.length; i += chunkSize) {
+                const chunk = dmTasks.slice(i, i + chunkSize);
+                await Promise.allSettled(chunk);
+                // Wait 1 second between chunks to respect rate limits
+                if (i + chunkSize < dmTasks.length) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
         }
         
         console.log(`Code check process completed. Found ${codesToSave.length} new codes, ${expiredCodes.length} expired codes, ${reactivatedCodes.length} reactivated codes.`);
@@ -461,6 +495,77 @@ async function sendCodeNotification(client, config, settings, game, codes, guild
 
         // For other errors, fail silently
         return;
+    }
+}
+
+// Function to send direct messages to subscribed users
+async function sendDMNotification(client, subscription, game, codes) {
+    try {
+        // Fetch the user from Discord API
+        const user = await client.users.fetch(subscription.userId).catch(() => null);
+        if (!user) {
+            return; // User not found or deleted account
+        }
+
+        // Get language - fallback to English if missing
+        const langCode = subscription.language || 'en';
+        
+        // Generate notification content
+        const baseTitle = await languageManager.getString(
+            'commands.listcodes.newCodes',
+            null, // null guildId for DMs
+            { game: gameNames[game] }
+        );
+        const title = `${gameEmojis[game]} ${baseTitle}`;
+
+        const redeemText = await languageManager.getString(
+            'commands.listcodes.redeemButton',
+            null
+        );
+
+        const descriptionPromises = codes.map(async code => {
+            const rewardString = code.rewards ? 
+                await languageManager.getRewardString(code.rewards, null) : 
+                await languageManager.getString('commands.listcodes.noReward', null);
+            
+            return `**${code.code}**\n[${redeemText}](${redeemUrls[game]}?code=${code.code})\n└ ${rewardString}`;
+        });
+
+        const descriptions = await Promise.all(descriptionPromises);
+        let finalDescription = descriptions.join('\n\n');
+        
+        // Add info about subscription at the bottom
+        finalDescription += '\n\n*You received this because you are subscribed to our DM notifications. Use `/dmnotify disable` to stop receiving these messages.*';
+
+        const supportMsg = await languageManager.getString(
+            'common.supportMsg', 
+            null
+        ) || '❤️ Support: ko-fi.com/neionri | sociabuzz.com/neionri | github.com/sponsors/neionri';
+
+        const embed = new EmbedBuilder()
+            .setColor('#00ff00')
+            .setTitle(title)
+            .setDescription(finalDescription)
+            .setFooter({ text: supportMsg })
+            .setTimestamp();
+
+        // Send the DM
+        await user.send({ embeds: [embed] });
+
+    } catch (error) {
+        // If we can't send a DM to this user (they blocked the bot or closed DMs)
+        // We'll mark their subscription as inactive
+        if (error.code === 50007) { // Cannot send messages to this user
+            try {
+                await UserSubscription.updateOne(
+                    { userId: subscription.userId },
+                    { $set: { active: false } }
+                );
+                console.log(`Disabled DM subscription for user ${subscription.userId} (DMs blocked)`);
+            } catch (updateError) {
+                console.error(`Failed to update subscription status for user ${subscription.userId}`, updateError);
+            }
+        }
     }
 }
 

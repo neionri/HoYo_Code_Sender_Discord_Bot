@@ -260,6 +260,40 @@ module.exports = {
                 noSetup: 'Vui lòng chạy `/setup` trước để cấu hình kênh thông báo chính.',
                 general: 'Đã xảy ra lỗi khi thiết lập các thread forum.'
             }
+        },
+        dmnotify: {
+            description: 'Đăng ký nhận mã game qua Tin nhắn Trực tiếp (DM)',
+            subcommands: {
+                enable: 'Bật thông báo DM cho mã game',
+                disable: 'Tắt thông báo DM',
+                games: 'Chọn trò chơi bạn muốn nhận mã',
+                status: 'Kiểm tra trạng thái thông báo DM hiện tại của bạn'
+            },
+            status: {
+                title: '📬 Trạng Thái Thông Báo DM Của Bạn',
+                enabled: '✅ **Trạng thái:** Đang hoạt động',
+                disabled: '❌ **Trạng thái:** Đã tắt',
+                gamesTitle: 'Trò chơi đã đăng ký:',
+                noGames: 'Không có (Bạn sẽ không nhận được bất kỳ mã nào!)',
+                footer: 'Sử dụng /dmnotify games để thay đổi tùy chọn của bạn'
+            },
+            enable: {
+                success: '✅ **Thông báo DM đã được bật!** Bạn sẽ nhận được các mã mới trực tiếp trong DM của mình.',
+                alreadyEnabled: '⚠️ Thông báo DM của bạn đã được bật.'
+            },
+            disable: {
+                success: '❌ **Thông báo DM đã được tắt.** Bạn sẽ không còn nhận được mã trong DM nữa.',
+                alreadyDisabled: '⚠️ Thông báo DM của bạn đã bị tắt.'
+            },
+            games: {
+                success: '✅ **Sở thích đã được cập nhật!** Bạn sẽ nhận được mã cho: **{games}**',
+                noGamesSelected: '⚠️ Bạn đã tắt tất cả trò chơi. Bạn sẽ không nhận được bất kỳ mã nào cho đến khi bạn bật ít nhất một trò chơi.',
+                notEnabled: '⚠️ Bạn đã cập nhật sở thích trò chơi của mình, nhưng thông báo DM hiện đang **bị tắt**. Sử dụng `/dmnotify enable` để bật lại chúng.'
+            },
+            error: {
+                general: 'Đã xảy ra lỗi khi cập nhật sở thích DM của bạn.',
+                dmBlocked: '⚠️ Tôi không thể gửi tin nhắn cho bạn! Vui lòng kiểm tra xem DM của bạn có mở không và thử lại.'
+            }
         }
     },
     errors: {
